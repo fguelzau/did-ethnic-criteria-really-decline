@@ -54,6 +54,16 @@ figure <- function(title, file, note = NULL) {
   block(title, str_c("![](", here(path_fig, str_c(file, ".png")), "){width=16cm}"), "", note = note)
 }
 
+# A4 section break; the section it closes takes this orientation
+section_break <- function(wide = FALSE) {
+  size <- if (wide) '<w:pgSz w:w="16838" w:h="11906" w:orient="landscape"/>' else '<w:pgSz w:w="11906" w:h="16838"/>'
+  c("```{=openxml}",
+    str_c('<w:p><w:pPr><w:sectPr>', size,
+          '<w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134" w:header="709" ',
+          'w:footer="709" w:gutter="0"/></w:sectPr></w:pPr></w:p>'),
+    "```", "")
+}
+
 ci_note <- str_c("95% confidence intervals in brackets, from ", n_boot, " bootstrap replicates ",
                  "that resample sample points within East/West (× wave for the series). ")
 pop_note <- "German citizens, weighted with the ALLBUS East/West person weight. "
@@ -305,6 +315,7 @@ table_a4 <- block(
   panel("(b) Typology shift, self-administered minus CAPI, with the civic threshold of the self-administered arms set to reproduce the CAPI civic share", a4t_b),
   panel("(c) Within-respondent comparison", a4t_c),
   panel("(d) Descent alone as the ethnic index ('German descent' ≥ 6): typology shift, self-administered minus CAPI", a4t_d),
+  section_break(),  # (a)-(d) portrait; (e) is wide and goes on a landscape page with the note
   panel("(e) Alternative codings of the typology: shift in each type, self-administered minus CAPI", a4t_e),
   note = str_c(pop_note, ci_note, "Strong civic endorsement: mean of speaks German, adapts, no crimes and ",
                "self-supporting ≥ 6, as in the typology. (a) conditions on civic endorsement, which is itself ",
@@ -774,17 +785,8 @@ tables <- list(table_a1, table_a2, table_a3, table_a4, table_a5, table_a6, text_
                table_a13, table_a14)
 
 # Tables too wide for a portrait page get a landscape section of their own
-landscape <- c("Table A1", "Table A3", "Table A6", "Table A10", "Table A13", "Table A14")
-
-# A4 section break; the section it closes takes this orientation
-section_break <- function(wide = FALSE) {
-  size <- if (wide) '<w:pgSz w:w="16838" w:h="11906" w:orient="landscape"/>' else '<w:pgSz w:w="11906" w:h="16838"/>'
-  c("```{=openxml}",
-    str_c('<w:p><w:pPr><w:sectPr>', size,
-          '<w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134" w:header="709" ',
-          'w:footer="709" w:gutter="0"/></w:sectPr></w:pPr></w:p>'),
-    "```", "")
-}
+# (for Table A4 only panel (e), see the break inside table_a4)
+landscape <- c("Table A1", "Table A3", "Table A4", "Table A6", "Table A10", "Table A13", "Table A14")
 
 # List of contents, built from the headings so it cannot drift from them
 headings <- c(unlist(tables), figures) |>
@@ -833,8 +835,10 @@ read_file(styles) |>
   write_file(styles)
 # Final section (the figures): A4 portrait, as in the section breaks above
 document <- fs::path(ref_dir, "word", "document.xml")
+# pandoc takes the reference document's sectPr, so its page size and margins go into that element
+a4_portrait <- str_extract(section_break()[2], "<w:pgSz.*?/><w:pgMar.*?/>")
 read_file(document) |>
-  str_replace("</w:body>", str_c(str_remove_all(section_break()[2], "</?w:p>|</?w:pPr>"), "</w:body>")) |>
+  str_replace("(?s)(<w:sectPr>.*?)(\\s*</w:sectPr>)", str_c("\\1", a4_portrait, "\\2")) |>
   write_file(document)
 fs::file_delete(ref_docx)
 withr::with_dir(ref_dir, zip(ref_docx, fs::dir_ls(recurse = TRUE, type = "file"), flags = "-q"))
