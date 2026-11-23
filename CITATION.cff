@@ -11,6 +11,10 @@ authors:
     affiliation: "Research Unit at the Expert Council on Integration and Migration"
 license: MIT
 repository-code: "https://github.com/fguelzau/did-ethnic-criteria-really-decline"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.24464195
+    description: "Zenodo concept DOI (all versions)"
 abstract: >-
   R code that reproduces every figure and table in the article and its online
   appendix from the original ALLBUS, ISSP and ESS survey files. The survey data
@@ -21,3 +25,14 @@ keywords:
   - social desirability
   - ALLBUS
   - Germany
+references:
+  - type: article
+    title: "Civic demands, hidden descent: survey mode and the measurement of naturalisation attitudes in Germany, 1996–2023"
+    authors:
+      - family-names: Gülzau
+        given-names: Fabian
+        orcid: "https://orcid.org/0000-0002-5649-026X"
+    year: 2026
+    journal: SocArXiv
+    doi: 10.31235/osf.io/4ax5h
+    url: "https://osf.io/preprints/socarxiv/4ax5h"

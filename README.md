@@ -1,7 +1,9 @@
 # Civic demands, hidden descent: survey mode and the measurement of naturalisation attitudes in Germany, 1996–2023
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24464195.svg)](https://doi.org/10.5281/zenodo.24464195)
+
 Replication code for the article by Fabian Gülzau.
-Preprint: *SocArXiv link to follow*.
+Preprint: SocArXiv, <https://doi.org/10.31235/osf.io/4ax5h>. Code archived at Zenodo: <https://doi.org/10.5281/zenodo.24464195>.
 
 The shift from descent-based to civic naturalisation criteria is one of the best-established
 findings in German integration research. It rests on one ALLBUS battery (`mn01`–`mn09`), which was
@@ -96,7 +98,11 @@ Output files carry the number they have in the article (`fig1_`–`fig5_`, `tabl
 ## How to cite
 
 Gülzau, Fabian. 2026. "Civic demands, hidden descent: survey mode and the measurement of
-naturalisation attitudes in Germany, 1996–2023." SocArXiv. *DOI to follow*.
+naturalisation attitudes in Germany, 1996–2023." SocArXiv. <https://doi.org/10.31235/osf.io/4ax5h>.
+
+The code: Gülzau, Fabian. 2026. "Replication code for: Civic demands, hidden descent: survey mode
+and the measurement of naturalisation attitudes in Germany, 1996–2023." Zenodo.
+<https://doi.org/10.5281/zenodo.24464195>.
 
 ## License
 
