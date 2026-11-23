@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite it as below."
+type: software
+title: "Replication code for: Civic demands, hidden descent: survey mode and the measurement of naturalisation attitudes in Germany, 1996–2023"
+version: 1.0.0
+date-released: 2026-11-23
+authors:
+  - family-names: Gülzau
+    given-names: Fabian
+    orcid: "https://orcid.org/0000-0002-5649-026X"
+    affiliation: "Research Unit at the Expert Council on Integration and Migration"
+license: MIT
+repository-code: "https://github.com/fguelzau/did-ethnic-criteria-really-decline"
+abstract: >-
+  R code that reproduces every figure and table in the article and its online
+  appendix from the original ALLBUS, ISSP and ESS survey files. The survey data
+  are not included; see the README for the data sets and how to obtain them.
+keywords:
+  - naturalisation criteria
+  - survey mode effects
+  - social desirability
+  - ALLBUS
+  - Germany

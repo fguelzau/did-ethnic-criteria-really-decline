@@ -47,3 +47,19 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Project: only code is version controlled
+data/
+output/
+background/
+
+# macOS
+.DS_Store
+
+# Private working material (not part of the replication package)
+input/
+manuscript/
+archive/
+CLAUDE.md
+article_outline.md
+notes/
